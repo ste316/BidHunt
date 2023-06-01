@@ -1,0 +1,4 @@
+tasks: 
+-aggiungere metodo pagamento
+-aggiungere attributi tabelle
+-fare una revisione e renderlo professional and cool
