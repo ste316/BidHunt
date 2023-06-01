@@ -4,7 +4,7 @@
     {
         public int Id { get; set; }
 
-        public string fk_offerta { get; set; }
+        public int fk_offerta { get; set; }
 
         public int TempoRimanente { get; set; }
 
