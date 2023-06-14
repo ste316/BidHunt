@@ -30,5 +30,17 @@ namespace BidHunt.Controllers
             _dbContext.Add(offerta);
             _dbContext.SaveChanges();
         }
+        //UPDATE
+        [HttpPut("{id}")]
+        public void UpdateOfferta(int id, [FromBody] Offerta updatedOfferta)
+        {
+            var offerta = _dbContext.offerte.Find(id);
+            if (offerta != null) 
+            {
+                offerta.offerta = updatedOfferta.offerta;
+
+            }
+            _dbContext.SaveChanges();
+        }
     }
 }
