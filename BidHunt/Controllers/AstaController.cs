@@ -27,5 +27,24 @@ namespace BidHunt.Controllers
             return asta;
         }
 
+        [HttpPost]
+        public void AggiungiAsta([FromBody] Asta asta) 
+        {
+            _dbContext.Add(asta);
+            _dbContext.SaveChanges();
+        }
+
+        [HttpPut("{id}")]
+        public void UpdateAsta(int id, [FromBody] Asta updateAsta) 
+        {
+            var asta = _dbContext.Asta.Find(id);
+            if (asta != null)
+            {
+                asta.TempoRimanente = updateAsta.TempoRimanente;
+                
+            }
+            _dbContext.SaveChanges();
+        }
+
     }
 }
