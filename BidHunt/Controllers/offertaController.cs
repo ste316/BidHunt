@@ -12,16 +12,24 @@ namespace BidHunt.Controllers
 
         //GET
         [HttpGet]
-        public IEnumerable<Offerta> Get() 
+        public IEnumerable<Offerta> GetAllOfferta() 
         {
             return _dbContext.offerte;
         }
         //GET
         [HttpGet("{id_offerta}")]
-        public Offerta GetOfferta(int id_offerta)
+        public Offerta GetOffertaById(int id_offerta)
         {
-            var offerta = _dbContext.offerte.FirstOrDefault(x => x.id_offerta == id_offerta)
+            var offerta = _dbContext.offerte.FirstOrDefault(x => x.id_offerta == id_offerta);
             return offerta;
         }
+        //POST
+        [HttpPost]
+        public void AggiungiOfferta([FromBody] Offerta offerta)
+        {
+            _dbContext.Add(offerta);
+            _dbContext.SaveChanges();
+        }
+
     }
 }
