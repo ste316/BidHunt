@@ -42,5 +42,22 @@ namespace BidHunt.Controllers
             }
             _dbContext.SaveChanges();
         }
+        //DELETE
+        [HttpDelete("{id}")]
+        public IActionResult DeleteOfferta(int id)
+        {
+            var offerta = _dbContext.offerte.Find(id);
+            if(offerta == null)
+            {
+                return BadRequest(new { errorCode = 4, errorDescription = "Offerta non trovata"});
+
+            }
+            else
+            {
+                _dbContext.Remove(offerta);
+                _dbContext.SaveChanges();
+                return Ok();
+            }
+        }
     }
 }
