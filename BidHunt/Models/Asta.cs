@@ -10,6 +10,8 @@
 
         public int Fk_prodotto { get; set; }
 
+        public string Description { get; set; }
+
 
     }
 }
