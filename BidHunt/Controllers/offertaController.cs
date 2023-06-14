@@ -17,7 +17,7 @@ namespace BidHunt.Controllers
             return _dbContext.offerte;
         }
         //GET
-        [HttpGet("{id}")]
+        [HttpGet("{id_offerta}")]
         public Offerta GetOfferta(int id_offerta)
         {
             var offerta = _dbContext.offerte.FirstOrDefault(x => x.id_offerta == id_offerta)
