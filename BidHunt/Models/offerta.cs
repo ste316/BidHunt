@@ -1,9 +1,13 @@
 /* creazione classe offerta */
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
 public class Offerta
 {
+    [Key]
     public int id_offerta {get;set;}
 
-    public dateTime? data { get;set;}
+    public DateTime? data { get;set;}
 
     public float offerta { get;set;}
 
