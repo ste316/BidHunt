@@ -46,5 +46,20 @@ namespace BidHunt.Controllers
             _dbContext.SaveChanges();
         }
 
+        [HttpDelete("{id}")]
+        public IActionResult DeleteAsta(int id) 
+        {
+            var asta = _dbContext.Asta.Find(id);
+            if (asta == null) 
+            {
+                return BadRequest(new { errorCode=4, errorDescription= "Asta non trovata!"});
+            }
+            else 
+            {
+                _dbContext.Remove(asta);
+                _dbContext.SaveChanges();
+                return Ok();
+            }
+        }
     }
 }
