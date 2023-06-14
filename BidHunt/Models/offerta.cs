@@ -12,11 +12,11 @@ public class Offerta
     public float offerta { get;set;}
 
     //aggiungi fk
-    [ForeignKey("")]
+    [ForeignKey("Asta")]
     public int fk_asta_id { get;set;}
 
     //aggiungi fk
-    [ForeignKey("")]
+    [ForeignKey("User")]
     public int fk_utente_id { get;set;}
 
 }
