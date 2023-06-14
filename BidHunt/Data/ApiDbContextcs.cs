@@ -12,6 +12,7 @@ namespace BidHunt.Data
 
         public DbSet<Offerta> offerte{ get; set; }
 
+        public DbSet<MetodoPagamento> MetodoPagamento { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

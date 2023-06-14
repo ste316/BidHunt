@@ -7,6 +7,8 @@
         public string Numero_carta { get; set; }
         public int Mese_scadenza { get; set; }
         public int Anno_scadenza { get; set; }
+
+        public ICollection<User> Users { get; set; }
     }
 }
 
