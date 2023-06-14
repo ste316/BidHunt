@@ -4,9 +4,11 @@
     {
         public int Id { get; set; }
 
-        public string Name { get; set; }
+        public string fk_offerta { get; set; }
 
-        public string Description { get; set; }
+        public int TempoRimanente { get; set; }
+
+        public int Fk_prodotto { get; set; }
 
 
     }
