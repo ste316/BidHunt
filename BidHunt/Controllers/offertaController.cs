@@ -30,6 +30,5 @@ namespace BidHunt.Controllers
             _dbContext.Add(offerta);
             _dbContext.SaveChanges();
         }
-
     }
 }
