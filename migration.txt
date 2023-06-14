@@ -1,0 +1,3 @@
+add-migration ModificaColonne <--(nome della migrazione) 
+
+update-database
