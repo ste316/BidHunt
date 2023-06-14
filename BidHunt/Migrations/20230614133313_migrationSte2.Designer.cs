@@ -4,6 +4,7 @@ using BidHunt.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BidHunt.Migrations
 {
     [DbContext(typeof(ApiDbContextcs))]
-    partial class ApiDbContextcsModelSnapshot : ModelSnapshot
+    [Migration("20230614133313_migrationSte2")]
+    partial class migrationSte2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -107,31 +110,6 @@ namespace BidHunt.Migrations
                     b.HasIndex("MetodoPagamentoRefId");
 
                     b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("Offerta", b =>
-                {
-                    b.Property<int>("id_offerta")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id_offerta"));
-
-                    b.Property<DateTime?>("data")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("fk_asta_id")
-                        .HasColumnType("int");
-
-                    b.Property<int>("fk_utente_id")
-                        .HasColumnType("int");
-
-                    b.Property<float>("offerta")
-                        .HasColumnType("real");
-
-                    b.HasKey("id_offerta");
-
-                    b.ToTable("offerte");
                 });
 
             modelBuilder.Entity("BidHunt.Models.User", b =>
