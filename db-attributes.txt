@@ -1,0 +1,15 @@
+utente
+    id
+    nome
+    cognome
+    data nascita
+    metodo_pagamento fk 1-n
+    mail
+    password
+
+metodo_pagamento
+    id
+    tipo (mastercard|visa)
+    numero carta
+    mese_scadenza
+    anno_scadenza
