@@ -37,7 +37,7 @@ namespace BidHunt.Controllers
             var offerta = _dbContext.offerte.Find(id);
             if (offerta != null) 
             {
-                offerta.offerte = updatedOfferta.offerte;
+                offerta.offerta = updatedOfferta.offerta;
 
             }
             _dbContext.SaveChanges();
