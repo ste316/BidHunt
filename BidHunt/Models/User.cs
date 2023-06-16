@@ -16,5 +16,8 @@ namespace BidHunt.Models
         public int MetodoPagamentoRefId { get; set; }
         public MetodoPagamento MetodoPagamento { get; set; }
 
+        public ICollection<Prodotto> Prodotti { get; set; }
+
+
     }
 }
