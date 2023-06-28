@@ -1,12 +1,14 @@
 ﻿using BidHunt.Data;
 using BidHunt.Migrations;
 using BidHunt.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using System.Text;
 
 namespace BidHunt.Controllers
 {
@@ -26,7 +28,7 @@ namespace BidHunt.Controllers
         public IActionResult Login([FromBody] User user)
         {
 
-            var userAttuale = _apiDbContextcs.Users.FirstOrDefault(u => u.Email == user.Email && u.Password == user.Password);
+            var userAttuale = _dbContext.Users.FirstOrDefault(u => u.Email == user.Email && u.Password == user.Password);
 
             if (userAttuale == null)
             {
@@ -58,7 +60,7 @@ namespace BidHunt.Controllers
         [HttpGet("{id}")]
         public IActionResult GetUser(int id)
         {
-            var user = _dbContext.user.FirstOrDefault(x => x.id == id);
+            var user = _dbContext.Users.FirstOrDefault(x => x.Id == id);
 
             return Ok(user);
         }
@@ -76,15 +78,19 @@ namespace BidHunt.Controllers
         [HttpPut("{id}")]
         public IActionResult UpdatedUsers(int id, [FromBody] User updatedUser)
         {
-            var user = _dbContext.user.Find(id);
+            var user = _dbContext.Users.Find(id);
             if (user == null)
             {
                 return BadRequest("User non aggiornabile!");
             }
             else
             {
-                user.user = updatedUser.user;
-                _dbContext.SaveChanges();
+                user.Nome = updatedUser.Nome;
+                user.Cognome = updatedUser.Cognome;
+                user.DataNascita = updatedUser.DataNascita;
+                user.Email = updatedUser.Email;
+                user.Password = updatedUser.Password;
+               _dbContext.SaveChanges();
                 return Ok();
             }
         }
@@ -92,7 +98,7 @@ namespace BidHunt.Controllers
         [HttpDelete("{id}")]
         public IActionResult DeleteUser(int id)
         {
-            var user = _dbContext.user.Find(id);
+            var user = _dbContext.Users.Find(id);
             if (user == null)
             {
                 return BadRequest(new { errorCode = 4, errorDescription = "User non trovato" });

@@ -85,7 +85,7 @@ namespace BidHunt.Controllers
             }
                 else
             {
-                offerta.offerta = updatedOfferta.offerta;
+                offerta.offertaNome = updatedOfferta.offertaNome;
                 _dbContext.SaveChanges();
                 return Ok();
             }

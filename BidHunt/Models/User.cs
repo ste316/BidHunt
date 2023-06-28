@@ -15,7 +15,6 @@ namespace BidHunt.Models
         [ForeignKey("MetodoPagamento")]
         public int MetodoPagamentoRefId { get; set; }
         public MetodoPagamento MetodoPagamento { get; set; }
-
         public ICollection<Prodotto> Prodotti { get; set; }
 
 
