@@ -9,7 +9,7 @@ namespace BidHunt.Controllers
     public class offertaController : ControllerBase
     {
         ApiDbContextcs _dbContext = new ApiDbContextcs();
-       
+        
         /*
         //GET
         [HttpGet]
