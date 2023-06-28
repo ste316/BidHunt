@@ -13,9 +13,9 @@ namespace BidHunt.Models
 
         // add fk https://www.entityframeworktutorial.net/code-first/foreignkey-dataannotations-attribute-in-code-first.aspx
         [ForeignKey("MetodoPagamento")]
-        public int MetodoPagamentoRefId { get; set; }
-        public MetodoPagamento MetodoPagamento { get; set; }
-        public ICollection<Prodotto> Prodotti { get; set; }
+        public int? MetodoPagamentoRefId { get; set; }
+        public MetodoPagamento? MetodoPagamento { get; set; }
+        public ICollection<Prodotto>? Prodotti { get; set; }
 
 
     }
