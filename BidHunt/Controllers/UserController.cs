@@ -58,6 +58,7 @@ namespace BidHunt.Controllers
         {
             return Ok(_dbContext.Users);
         }
+
         [HttpGet("{id}")]
         public IActionResult GetUser(int id)
         {

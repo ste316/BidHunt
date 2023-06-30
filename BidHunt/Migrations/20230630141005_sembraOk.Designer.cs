@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BidHunt.Migrations
 {
     [DbContext(typeof(ApiDbContextcs))]
-    [Migration("20230614130527_ModificaSte")]
-    partial class ModificaSte
+    [Migration("20230630141005_sembraOk")]
+    partial class sembraOk
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -33,46 +33,29 @@ namespace BidHunt.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("Fk_prodotto")
-                        .HasColumnType("int");
+                    b.Property<DateTime>("DataFine")
+                        .HasColumnType("datetime2");
 
-                    b.Property<int>("TempoRimanente")
-                        .HasColumnType("int");
+                    b.Property<DateTime>("DataInizio")
+                        .HasColumnType("datetime2");
 
-                    b.Property<string>("fk_offerta")
+                    b.Property<string>("Descrizione_prodotto")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Nome_prodotto")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<float>("Prezzo_iniziale_prod")
+                        .HasColumnType("real");
+
+                    b.Property<int?>("fk_utente_id")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.ToTable("Asta");
-                });
-
-            modelBuilder.Entity("BidHunt.Models.MetodoPagamento", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("Anno_scadenza")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Mese_scadenza")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Numero_carta")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Tipo")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("MetodoPagamento");
                 });
 
             modelBuilder.Entity("BidHunt.Models.User", b =>
@@ -94,9 +77,6 @@ namespace BidHunt.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Metodo_pagamentoId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -105,22 +85,38 @@ namespace BidHunt.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.Property<string>("PayPal_mail")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.HasIndex("Metodo_pagamentoId");
+                    b.HasKey("Id");
 
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("BidHunt.Models.User", b =>
+            modelBuilder.Entity("Offerta", b =>
                 {
-                    b.HasOne("BidHunt.Models.MetodoPagamento", "Metodo_pagamento")
-                        .WithMany()
-                        .HasForeignKey("Metodo_pagamentoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Property<int>("id_offerta")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
 
-                    b.Navigation("Metodo_pagamento");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id_offerta"));
+
+                    b.Property<DateTime?>("data")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("fk_asta_id")
+                        .HasColumnType("int");
+
+                    b.Property<int>("fk_utente_id")
+                        .HasColumnType("int");
+
+                    b.Property<float>("offertaPrezzo")
+                        .HasColumnType("real");
+
+                    b.HasKey("id_offerta");
+
+                    b.ToTable("offerte");
                 });
 #pragma warning restore 612, 618
         }
