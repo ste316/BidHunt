@@ -4,6 +4,7 @@ using BidHunt.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BidHunt.Migrations
 {
     [DbContext(typeof(ApiDbContextcs))]
-    partial class ApiDbContextcsModelSnapshot : ModelSnapshot
+    [Migration("20230630134759_Pippo")]
+    partial class Pippo
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -47,10 +50,15 @@ namespace BidHunt.Migrations
                     b.Property<float>("Prezzo_iniziale_prod")
                         .HasColumnType("real");
 
+                    b.Property<int?>("UserId")
+                        .HasColumnType("int");
+
                     b.Property<int?>("fk_utente_id")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Asta");
                 });
@@ -99,6 +107,9 @@ namespace BidHunt.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id_offerta"));
 
+                    b.Property<int?>("AstaId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime?>("data")
                         .HasColumnType("datetime2");
 
@@ -113,7 +124,33 @@ namespace BidHunt.Migrations
 
                     b.HasKey("id_offerta");
 
+                    b.HasIndex("AstaId");
+
                     b.ToTable("offerte");
+                });
+
+            modelBuilder.Entity("BidHunt.Migrations.Asta", b =>
+                {
+                    b.HasOne("BidHunt.Models.User", null)
+                        .WithMany("Asta")
+                        .HasForeignKey("UserId");
+                });
+
+            modelBuilder.Entity("Offerta", b =>
+                {
+                    b.HasOne("BidHunt.Migrations.Asta", null)
+                        .WithMany("offerte")
+                        .HasForeignKey("AstaId");
+                });
+
+            modelBuilder.Entity("BidHunt.Migrations.Asta", b =>
+                {
+                    b.Navigation("offerte");
+                });
+
+            modelBuilder.Entity("BidHunt.Models.User", b =>
+                {
+                    b.Navigation("Asta");
                 });
 #pragma warning restore 612, 618
         }

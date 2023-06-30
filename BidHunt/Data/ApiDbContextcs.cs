@@ -12,8 +12,6 @@ namespace BidHunt.Data
 
         public DbSet<Offerta> offerte{ get; set; }
 
-        public DbSet<MetodoPagamento> MetodoPagamenti { get; set; }
-
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(@"Server=

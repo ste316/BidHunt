@@ -25,6 +25,7 @@ namespace BidHunt.Controllers
         }
 
         [HttpPost("[action]")]
+        //[Authorize]
         public IActionResult Login([FromBody] User user)
         {
 
@@ -66,7 +67,7 @@ namespace BidHunt.Controllers
         }
 
         [HttpPost]
-        [Authorize]
+       //[Authorize]
         public IActionResult AggiungiUsers([FromBody] User user
            )
         {
@@ -90,6 +91,7 @@ namespace BidHunt.Controllers
                 user.DataNascita = updatedUser.DataNascita;
                 user.Email = updatedUser.Email;
                 user.Password = updatedUser.Password;
+                user.PayPal_mail = updatedUser.PayPal_mail;
                _dbContext.SaveChanges();
                 return Ok();
             }

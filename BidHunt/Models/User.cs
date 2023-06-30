@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using BidHunt.Migrations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BidHunt.Models
 {
@@ -11,12 +12,8 @@ namespace BidHunt.Models
         public string Email { get; set; }
         public string Password { get; set; }
 
-        // add fk https://www.entityframeworktutorial.net/code-first/foreignkey-dataannotations-attribute-in-code-first.aspx
-        [ForeignKey("MetodoPagamento")]
-        public int? MetodoPagamentoRefId { get; set; }
-        public MetodoPagamento? MetodoPagamento { get; set; }
-        public ICollection<Prodotto>? Prodotti { get; set; }
-
+        public string PayPal_mail { get; set; }
+        
 
     }
 }

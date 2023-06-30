@@ -9,7 +9,7 @@ public class Offerta
 
     public DateTime? data { get;set;}
 
-    public float offertaNome { get;set;}
+    public float offertaPrezzo { get;set;}
 
     //aggiungi fk
     [ForeignKey("Asta")]
